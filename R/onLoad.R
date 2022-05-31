@@ -109,13 +109,9 @@
   assign("backupUserDic", file.path(backupUserDicPath,DicUser), .KoNLPEnv)
   assign("ScalaVer", .ScalaVer, .KoNLPEnv)
 
-  if(any(is.na(localeToCharset()))) {
-    if(all((localeToCharset()[1] == c("UTF-8", "CP949", "EUC-KR")) == FALSE)){
-      packageStartupMessage("This R shell doesn't contain any Hangul encoding.\nFor fully use, any of 'UTF-8', 'CP949', 'EUC-KR' needs to be used for R shell encoding.")
-    }
-  } else {
+  if(is.na(localeToCharset()[1]) || !(localeToCharset()[1] %in% c("UTF-8", "CP949", "EUC-KR"))) {
     packageStartupMessage("This R shell doesn't contain any Hangul encoding.\nFor fully use, any of 'UTF-8', 'CP949', 'EUC-KR' needs to be used for R shell encoding.")
-  }
+  } 
 }
 
 

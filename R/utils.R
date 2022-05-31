@@ -47,7 +47,10 @@ scala_library_install <- function(ver = '2.11.8') {
       #result <- download.file(url,tempf,mode='wb',method='auto')
       
       # Method 2: Reference https://support.rstudio.com/hc/en-us/articles/206827897-Secure-Package-Downloads-for-R
-      if(getRversion() > '3.2.0') {
+      if(getRversion() >= '4.2.0') {
+        print("The R version is 4.2.0 or later.")
+        opt_method = 'auto'
+      } else if(getRversion() > '3.2.0') {
         print("My R is over 3.2.0")
         # Method 2 for R 3.2+.
         if(.Platform$OS.type == "windows") {
